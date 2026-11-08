@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nasiba Movies</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#0a0a0c;--card:#16161a;--pink:#ff2d8a;--pink2:#ff7ab8;--tx:#f4f4f6;--mut:#a0a0ab}
+html{scroll-padding-top:calc(70px + env(safe-area-inset-top,0px));scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.5}
+a{color:var(--pink2)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;align-items:center;gap:10px;padding:12px 16px;background:rgba(10,10,12,.93);border-bottom:1px solid #2a1220;backdrop-filter:blur(8px)}
+.logo{font-weight:800;font-size:1.25rem;color:var(--pink);white-space:nowrap}.logo span{color:var(--tx)}
+nav{flex:1;display:flex;gap:16px;justify-content:center}
+nav a{color:var(--tx);text-decoration:none;font-size:.92rem}nav a:hover{color:var(--pink)}
+@media(max-width:640px){nav{display:none}header{justify-content:space-between}}
+.lang{display:flex;border:1px solid var(--pink);border-radius:20px;overflow:hidden;flex-shrink:0}
+.lang button{background:none;border:0;color:var(--pink2);padding:7px 12px;font-weight:700;cursor:pointer}
+.lang button.on{background:var(--pink);color:#fff}
+.wrap{max-width:1150px;margin:0 auto;padding:0 16px}
+.hero{padding:44px 0 30px;text-align:center;background:radial-gradient(ellipse at top,#3a0f24 0,transparent 65%)}
+.hero h1{font-size:clamp(1.9rem,6vw,3.2rem);margin:0 0 10px}.hero h1 em{color:var(--pink);font-style:normal}
+.hero p{color:var(--mut);max-width:560px;margin:0 auto 20px}
+.btn{display:inline-block;background:var(--pink);color:#fff;border:0;border-radius:12px;padding:12px 22px;font-weight:700;cursor:pointer;font-size:1rem;text-decoration:none}
+.btn.o{background:none;border:1.5px solid var(--pink);color:var(--pink2)}
+.btn:disabled{opacity:.5}
+section{padding:30px 0}
+h2{font-size:1.4rem;margin:0 0 16px;color:var(--pink2)}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.tools input{flex:1;min-width:160px}
+input,textarea,select{padding:10px 13px;border-radius:10px;border:1px solid #333;background:var(--card);color:var(--tx);font:inherit;width:100%}
+input:focus,textarea:focus{outline:2px solid var(--pink);border-color:transparent}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.chip{background:var(--card);color:var(--tx);border:1px solid #333;border-radius:20px;padding:6px 14px;cursor:pointer}
+.chip.on{background:var(--pink);border-color:var(--pink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px}}
+.card{background:var(--card);border-radius:12px;overflow:hidden;cursor:pointer;border:1px solid transparent;transition:.2s}
+.card:hover{transform:translateY(-4px);border-color:var(--pink);box-shadow:0 8px 24px rgba(255,45,138,.25)}
+.poster{aspect-ratio:2/3;width:100%;object-fit:cover;display:flex;align-items:center;justify-content:center;text-align:center;padding:14px;font-weight:800;font-size:1.05rem;background:linear-gradient(160deg,#4a1230,#120a10);color:var(--pink2)}
+img.poster{padding:0}
+.card .t{padding:10px 12px 2px;font-weight:600;font-size:.92rem}
+.card .g{padding:0 12px 12px;font-size:.78rem;color:var(--mut)}
+.price{background:linear-gradient(90deg,#2a0f1d,#1a0a12);border:1px solid var(--pink);border-radius:14px;padding:16px;margin-bottom:16px}
+.price b{color:var(--pink);font-size:1.3rem}
+.form{display:grid;gap:12px;max-width:620px}
+.form label{display:grid;gap:5px;font-size:.85rem;color:var(--mut)}
+.rev{background:var(--card);border-left:3px solid var(--pink);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+.rev b{color:var(--pink2)}
+.empty{color:var(--mut)}
+footer{border-top:1px solid #2a1220;padding:24px 16px;text-align:center;color:var(--mut)}
+footer .btn{margin:4px}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.93);display:none;z-index:20;overflow:auto;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px))}
+#modal.open{display:block}
+.box{max-width:900px;margin:0 auto}
+video{width:100%;max-height:68vh;background:#000;border-radius:12px;border:1px solid var(--pink)}
+.x{float:right;background:var(--pink);color:#fff;border:0;border-radius:50%;width:38px;height:38px;cursor:pointer;margin-bottom:10px}
+.box h3{color:var(--pink2);margin:14px 0 6px}.box p{color:var(--mut);margin:0 0 12px}
+details.adm{margin-top:24px;background:var(--card);border-radius:12px;padding:12px}
+details.adm summary{cursor:pointer;color:var(--mut)}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Nasiba <span>Movies</span></div>
+  <nav><a href="#movies" data-i="nMovies"></a><a href="#order" data-i="nOrder"></a><a href="#reviews" data-i="nReviews"></a></nav>
+  <div class="lang"><button id="bUz" class="on">UZ</button><button id="bRu">RU</button></div>
+</header>
+
+<div class="hero"><div class="wrap">
+  <h1>Nasiba <em>Movies</em></h1>
+  <p data-i="heroP"></p>
+  <a class="btn" href="#movies" data-i="watch"></a> <a class="btn o" href="#order" data-i="orderBtn"></a>
+</div></div>
+
+<div class="wrap">
+<section id="movies">
+  <h2 data-i="nMovies"></h2>
+  <div class="tools"><input id="q" type="search"></div>
+  <div class="chips" id="chips"></div>
+  <div class="grid" id="grid"></div>
+  <p class="empty" id="empty" hidden data-i="none"></p>
+</section>
+
+<section id="order">
+  <h2 data-i="nOrder"></h2>
+  <div class="price"><b>200 000 so'm</b> — <span data-i="priceTxt"></span></div>
+  <div class="form">
+    <label><span data-i="fName"></span><input id="oName"></label>
+    <label><span data-i="fMovie"></span><input id="oMovie"></label>
+    <label><span data-i="fNote"></span><textarea id="oNote" rows="3"></textarea></label>
+    <button class="btn" id="oSend" data-i="send"></button>
+    <small class="empty" data-i="payNote"></small>
+  </div>
+</section>
+
+<section id="reviews">
+  <h2 data-i="nReviews"></h2>
+  <div id="revList"></div>
+  <a class="btn o" id="revBtn" target="_blank" rel="noopener" data-i="writeRev"></a>
+</section>
+</div>
+
+<footer>
+  <div data-i="contact"></div>
+  <a class="btn" target="_blank" rel="noopener" href="https://t.me/nasibamovies">Telegram @nasibamovies</a>
+  <a class="btn o" target="_blank" rel="noopener" href="https://instagram.com/nasiba_dilshod">Instagram @nasiba_dilshod</a>
+  <div style="margin-top:8px"><a href="tel:+998700391403">+998 70 039 14 03</a></div>
+  <details class="adm wrap"><summary>⚙</summary>
+    <p>Yangi kino qo'shish: maydonlarni to'ldiring, chiqqan qatorni <code>MOVIES</code> ro'yxatiga nusxalab qo'ying.</p>
+    <div class="form" style="max-width:none;text-align:left">
+      <input id="a1" placeholder="Nomi UZ"><input id="a2" placeholder="Название RU">
+      <select id="a3"><option value="comedy">comedy</option><option value="drama">drama</option><option value="melodrama">melodrama</option></select>
+      <input id="a4" placeholder="Yil / Год"><input id="a5" placeholder="Tavsif UZ"><input id="a6" placeholder="Описание RU">
+      <input id="a7" placeholder="Poster: posters/kino.jpg (bo'sh bo'lishi mumkin)"><input id="a8" placeholder="Video: videos/kino.mp4 yoki https://t.me/... (bo'sh bo'lishi mumkin)">
+      <button class="btn o" id="aGen" type="button">Qator yaratish</button><textarea id="aOut" rows="4" readonly></textarea>
+    </div>
+  </details>
+</footer>
+
+<div id="modal"><div class="box"><button class="x" id="close">✕</button><video id="vid" controls playsinline hidden></video><h3 id="mt"></h3><p id="mm"></p><p id="md"></p><a class="btn" id="mAct" target="_blank" rel="noopener"></a></div></div>
+
+<script>
+/* ===== KINOLAR RO'YXATI: yangi kino qo'shish uchun pastdagi admin (⚙) yordamida qator yarating va shu yerga qo'ying ===== */
+const MOVIES=[
+{uz:["3 Idiots","comedy",2009,"Injenerlik kolleji talabalari do'stligi va o'z yo'lini topish haqida kulgili va samimiy hikoya."],ru:["3 идиота","comedy",2009,"Тёплая комедия о дружбе студентов инженерного колледжа и поиске своего пути."],poster:"",video:""},
+{uz:["Dilwale Dulhania Le Jayenge","melodrama",1995,"Yevropadagi sayohatda tanishgan yosh sevishganlar va oila an'analari o'rtasidagi klassik sevgi qissasi."],ru:["Непохищенная невеста","melodrama",1995,"Классическая история любви молодой пары, встретившейся в поездке по Европе, и семейных традиций."],poster:"",video:""},
+{uz:["Kabhi Khushi Kabhie Gham","melodrama",2001,"Katta oila, ota va o'g'il o'rtasidagi kelishmovchilik va oilaviy qayta uchrashuv haqidagi dramatik film."],ru:["И в радости, и в горе","melodrama",2001,"Семейная драма о размолвке отца и сына и долгожданном воссоединении."],poster:"",video:""},
+{uz:["Munna Bhai M.B.B.S.","comedy",2003,"Yolg'on bilan shifokor bo'lib olgan jinoyatchining bemorlarga mehr bilan munosabati haqida komediya."],ru:["Мунна Бхай MBBS","comedy",2003,"Комедия о бандите, который выдаёт себя за врача и учит людей сочувствию."],poster:"",video:""},
+{uz:["Hera Pheri","comedy",2000,"Uch tavakkalchi kishining kutilmagan pul topishga urinishi va ularning kulgili sarguzashtlari."],ru:["Хера Фери","comedy",2000,"Три неудачника случайно оказываются в водовороте комичных денежных приключений."],poster:"",video:""},
+{uz:["Kal Ho Naa Ho","melodrama",2003,"Nyu-Yorkdagi oila hayotiga kirib kelgan yigit va uning sevgi hamda do'stlik haqidagi saboqlari."],ru:["Завтра может не наступить","melodrama",2003,"Трогательная история о человеке, который меняет жизнь одной нью-йоркской семьи."],poster:"",video:""},
+{uz:["Jab We Met","comedy",2007,"Poyezdda uchrashgan ikki turli odam sayohati davomida bir-birini o'zgartirishi haqida yengil, romantik film."],ru:["Когда мы встретились","comedy",2007,"Лёгкая романтическая комедия о двух разных людях, встретившихся в поезде."],poster:"",video:""},
+{uz:["Taare Zameen Par","drama",2007,"O'qishda qiynalayotgan bola va uni tushunadigan o'qituvchi haqidagi ta'sirli drama."],ru:["Звёзды на земле","drama",2007,"Трогательная драма о мальчике с трудностями в учёбе и учителе, который его понял."],poster:"",video:""},
+{uz:["Barfi!","drama",2012,"Eshita olmaydigan va gapira olmaydigan yigitning quvnoq va yumshoq muhabbat hikoyasi."],ru:["Барфи!","drama",2012,"Светлая и трогательная история любви молодого человека, который не слышит и не говорит."],poster:"",video:""},
+{uz:["Devdas","melodrama",2002,"Sevgisidan ayrilgan yigitning fojiali taqdirini ko'rsatuvchi katta, dabdabali melodrama."],ru:["Девдас","melodrama",2002,"Пышная мелодрама о трагической судьбе мужчины, потерявшего любовь."],poster:"",video:""},
+{uz:["Yeh Jawaani Hai Deewani","comedy",2013,"Do'stlar sayohati, orzular va yo'l tanlash haqidagi yosh va quvnoq film."],ru:["Эта молодость безумна","comedy",2013,"Яркая история о путешествии друзей, мечтах и выборе жизненного пути."],poster:"",video:""},
+{uz:["Golmaal","comedy",2006,"To'rt do'stning yolg'onlari tobora chigallashib, kulgili vaziyatlarga olib kelishi haqida."],ru:["Голмаал","comedy",2006,"Комедия о четырёх друзьях, чья ложь запутывается всё сильнее."],poster:"",video:""}
+];
+/* ===== SHARHLAR: haqiqiy mijoz fikrlarini shu yerga qo'shib boring: {name:"Ism", uz:"matn", ru:"текст"} ===== */
+const REVIEWS=[];
+
+const I={uz:{nMovies:"Kinolar",nOrder:"Buyurtma",nReviews:"Sharhlar",heroP:"Hind kinolari: komediya, drama va melodrama. Kerakli kinoni buyurtma qiling — biz topib saytga joylaymiz.",watch:"Kinolarni ko'rish",orderBtn:"Kino buyurtma qilish",search:"Kino qidirish…",all:"Hammasi",comedy:"Komediya",drama:"Drama",melodrama:"Melodrama",none:"Hech narsa topilmadi",priceTxt:"har bir buyurtma. To'lov oldindan, barcha to'lov turlari qabul qilinadi.",fName:"Ismingiz",fMovie:"Qaysi kino kerak?",fNote:"Qo'shimcha izoh (ixtiyoriy)",send:"Telegramda yuborish",payNote:"Tugma Telegramni ochadi. Buyurtma matni tayyor bo'ladi, to'lov usulini o'sha yerda kelishamiz.",writeRev:"Sharh yozish (Telegram)",noRev:"Hozircha sharhlar yo'q. Birinchi bo'lib fikringizni yozing!",contact:"Bog'lanish:",play:"▶ Ko'rish",soon:"Tez orada",ordThis:"Shu kinoni buyurtma qilish",need:"Kino nomini yozing",ordTxt:"Assalomu alaykum! Kino buyurtma qilmoqchiman.",revTxt:"Assalomu alaykum! Nasiba Movies haqida sharhim:"},
+ru:{nMovies:"Фильмы",nOrder:"Заказ",nReviews:"Отзывы",heroP:"Индийское кино: комедия, драма и мелодрама. Закажите нужный фильм — мы найдём его и добавим на сайт.",watch:"Смотреть фильмы",orderBtn:"Заказать фильм",search:"Поиск фильма…",all:"Все",comedy:"Комедия",drama:"Драма",melodrama:"Мелодрама",none:"Ничего не найдено",priceTxt:"за каждый заказ. Оплата заранее, принимаем все способы оплаты.",fName:"Ваше имя",fMovie:"Какой фильм нужен?",fNote:"Комментарий (необязательно)",send:"Отправить в Telegram",payNote:"Кнопка откроет Telegram с готовым текстом заказа, способ оплаты обсудим там.",writeRev:"Написать отзыв (Telegram)",noRev:"Отзывов пока нет. Напишите первым!",contact:"Связаться с нами:",play:"▶ Смотреть",soon:"Скоро",ordThis:"Заказать этот фильм",need:"Укажите название фильма",ordTxt:"Здравствуйте! Хочу заказать фильм.",revTxt:"Здравствуйте! Мой отзыв о Nasiba Movies:"}};
+let lang="uz",genre="all";
+try{lang=localStorage.getItem("lang")||"uz"}catch(e){}
+const $=id=>document.getElementById(id),t=k=>I[lang][k];
+const tg=txt=>"https://t.me/nasibamovies?text="+encodeURIComponent(txt);
+function applyLang(){
+  document.documentElement.lang=lang;
+  $("bUz").classList.toggle("on",lang=="uz");$("bRu").classList.toggle("on",lang=="ru");
+  document.querySelectorAll("[data-i]").forEach(e=>e.textContent=t(e.dataset.i));
+  $("q").placeholder=t("search");
+  $("revBtn").href=tg(t("revTxt"));
+  const c=$("chips");c.innerHTML="";
+  ["all","comedy","drama","melodrama"].forEach(g=>{const b=document.createElement("button");b.className="chip"+(g==genre?" on":"");b.textContent=t(g);b.onclick=()=>{genre=g;applyLang()};c.append(b)});
+  renderMovies();renderReviews();
+}
+function renderMovies(){
+  const s=$("q").value.trim().toLowerCase(),g=$("grid");g.innerHTML="";
+  let n=0;
+  MOVIES.forEach(m=>{
+    const d=m[lang]||m.uz;
+    if(genre!="all"&&d[1]!=genre)return;
+    if(s&&!(m.uz[0]+m.ru[0]).toLowerCase().includes(s))return;
+    n++;
+    const c=document.createElement("div");c.className="card";
+    let p;if(m.poster){p=document.createElement("img");p.src=m.poster;p.alt="";p.loading="lazy"}else{p=document.createElement("div");p.textContent=d[0]}
+    p.className="poster";
+    const tt=document.createElement("div");tt.className="t";tt.textContent=d[0];
+    const gg=document.createElement("div");gg.className="g";gg.textContent=t(d[1])+" • "+d[2];
+    c.append(p,tt,gg);c.onclick=()=>openM(m);g.append(c);
+  });
+  $("empty").hidden=n>0;
+}
+function openM(m){
+  const d=m[lang]||m.uz,v=$("vid"),a=$("mAct");
+  $("mt").textContent=d[0];$("mm").textContent=t(d[1])+" • "+d[2];$("md").textContent=d[3];
+  v.hidden=true;v.removeAttribute("src");
+  if(m.video&&/\.(mp4|webm|mov)(\?|$)/i.test(m.video)){v.src=m.video;v.hidden=false;a.style.display="none"}
+  else if(m.video){a.style.display="";a.textContent=t("play");a.href=m.video}
+  else{a.style.display="";a.textContent=t("ordThis");a.href=tg(t("ordTxt")+"\n"+d[0])}
+  $("modal").classList.add("open");
+}
+function closeM(){const v=$("vid");v.pause();v.removeAttribute("src");v.load();$("modal").classList.remove("open")}
+$("close").onclick=closeM;$("modal").onclick=e=>{if(e.target.id=="modal")closeM()};
+function renderReviews(){
+  const l=$("revList");l.innerHTML="";
+  if(!REVIEWS.length){const p=document.createElement("p");p.className="empty";p.textContent=t("noRev");l.append(p);return}
+  REVIEWS.forEach(r=>{const d=document.createElement("div");d.className="rev";const b=document.createElement("b");b.textContent=r.name;const p=document.createElement("div");p.textContent=r[lang]||r.uz||r.ru||"";d.append(b,p);l.append(d)});
+}
+$("oSend").onclick=()=>{
+  const m=$("oMovie").value.trim();if(!m){alert(t("need"));return}
+  const txt=t("ordTxt")+"\n"+$("fName").textContent+": "+$("oName").value.trim()+"\n"+$("fMovie").textContent+": "+m+($("oNote").value.trim()?"\n"+$("oNote").value.trim():"")+"\n200 000 so'm";
+  window.open(tg(txt),"_blank");
+};
+$("aGen").onclick=()=>{
+  const v=i=>JSON.stringify($("a"+i).value.trim()),y=parseInt($("a4").value)||0,g=$("a3").value;
+  $("aOut").value='{uz:['+v(1)+',"'+g+'",'+y+','+v(5)+'],ru:['+v(2)+',"'+g+'",'+y+','+v(6)+'],poster:'+v(7)+',video:'+v(8)+'},';
+};
+$("bUz").onclick=()=>{lang="uz";try{localStorage.setItem("lang",lang)}catch(e){}applyLang()};
+$("bRu").onclick=()=>{lang="ru";try{localStorage.setItem("lang",lang)}catch(e){}applyLang()};
+$("q").oninput=renderMovies;
+applyLang();
+</script>
+</body>
+</html>
